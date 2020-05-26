@@ -11,7 +11,7 @@ def read_raw_excel(excel, sheet_number=0):
         .rename(
             columns={
                 "样品名称": "sample_name",
-                "子文库号": "sample_id",
+                "子文库号": "id",
                 "测序类型": "seq_type",
                 "芯片号": "clip",
                 "Lane": "lane",
@@ -21,7 +21,7 @@ def read_raw_excel(excel, sheet_number=0):
         )
         .loc[
             :,
-            ["sample_name", "sample_id", "seq_type", "clip", "lane", "barcode", "path"],
+            ["sample_name", "id", "seq_type", "clip", "lane", "barcode", "path"],
         ]
     )
 
