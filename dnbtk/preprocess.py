@@ -4,7 +4,7 @@ import os
 import pandas as pd
 
 
-def read_raw_excel(excel, sheet_number=0):
+def read_raw_excel(excel, engine="openpyxl", sheet_number=0):
     return (
         pd.read_excel(excel, sheet_name=sheet_number)
         .dropna(how="all")
