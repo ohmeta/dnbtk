@@ -30,10 +30,11 @@ def generate_pe_fqpath(raw_df, check_exists=True):
     """
     raw_df header need contain: id, clip, lane, barcode, path
     """
-    samples_dict = {"id": [], "fq1": [], "fq2": []}
+    samples_dict = {"sample_name": [], "id": [], "fq1": [], "fq2": []}
 
     for i in range(len(raw_df)):
         for barcode in str(raw_df.at[i, "barcode"]).split("~"):
+            samples_dict["sample_name"].append(raw_df.at[i, "sample_name"])
             samples_dict["id"].append(raw_df.at[i, "id"])
 
             fq1 = os.path.join(
@@ -58,5 +59,5 @@ def generate_pe_fqpath(raw_df, check_exists=True):
                 if not os.path.exists(fq2):
                     print("%s not exists" % fq2)
 
-    samples_df = pd.DataFrame(samples_dict).sort_values("id")
+    samples_df = pd.DataFrame(samples_dict).sort_values(["sample_name", "id"])
     return samples_df
